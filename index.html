@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saad’s Accord | Mods & Links</title>
+  <meta name="description" content="Saad’s Accord — a simple page with all my Honda Accord mod links, with pictures." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph (social preview) -->
+  <meta property="og:title" content="Saad’s Accord | Mods & Links" />
+  <meta property="og:description" content="All my Accord modifications with pictures and product links." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/placeholder.svg" />
+  <meta property="og:url" content="" />
+
+  <link rel="icon" href="/assets/placeholder.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="wrap hero">
+    <div class="hero__top">
+      <div>
+        <h1 class="title">Saad’s Accord</h1>
+        <p class="bio">2016 Honda Accord EX-L | Mods, installs, and product links</p>
+      </div>
+
+      <div class="social" aria-label="Social links">
+        <!-- Replace # with your real social links later -->
+        <a class="iconbtn" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5zM18 6.6a1.1 1.1 0 1 1-1.1 1.1A1.1 1.1 0 0 1 18 6.6z"/>
+          </svg>
+        </a>
+        <a class="iconbtn" href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 3v10.2a4.8 4.8 0 1 1-4-4.7V11a2.8 2.8 0 1 0 2 2.7V3h2c.4 2.3 2 4.2 4 5V10c-2-.7-3.7-2.1-4-3.8V3z"/>
+          </svg>
+        </a>
+        <a class="iconbtn" href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8zM10 15.2V8.8L16 12l-6 3.2z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__note">
+      <span class="pill">Tap any mod</span>
+      <span class="muted">Opens in a new tab</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section aria-label="Accord modifications">
+      <div class="sectionhead">
+        <h2>Accord Modifications</h2>
+        <p class="muted">Pictures with product links. Update the list by editing <code>mods.js</code>.</p>
+      </div>
+
+      <div id="modsGrid" class="grid" role="list"></div>
+    </section>
+
+    <footer class="footer">
+      <p class="muted">© <span id="year"></span> Saad’s Accord</p>
+    </footer>
+  </main>
+
+  <script src="mods.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>
