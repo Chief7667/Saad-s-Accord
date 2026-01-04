@@ -4,20 +4,99 @@
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  if (!grid) return;
+  // Modal elements
+  const modal = document.getElementById("linkModal");
+  const modalSubtitle = document.getElementById("modalSubtitle");
+  const modalButtons = document.getElementById("modalButtons");
+
+  let lastFocused = null;
 
   function safeText(s){
     return (s ?? "").toString();
   }
 
+  function normalizeLinks(mod){
+    if (Array.isArray(mod.links) && mod.links.length) return mod.links.filter(x => x && x.url);
+    if (typeof mod.link === "string" && mod.link.trim()) return [{ label: "Open link", url: mod.link.trim() }];
+    return [];
+  }
+
+  function openModalFor(mod){
+    const links = normalizeLinks(mod);
+    if (links.length === 0) return;
+
+    // If only 1 link, open directly (no prompt)
+    if (links.length === 1) {
+      window.open(links[0].url, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    if (!modal || !modalButtons) {
+      window.open(links[0].url, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    lastFocused = document.activeElement;
+
+    modalButtons.innerHTML = "";
+    modalSubtitle.textContent = safeText(mod.modName || "");
+
+    links.forEach((l) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choicebtn";
+      btn.innerHTML = `
+        <span class="choicebtn__label">
+          <span>${safeText(l.label || "Open")}</span>
+          <small>Opens in a new tab</small>
+        </span>
+        <span class="choicebtn__arrow">↗</span>
+      `;
+      btn.addEventListener("click", () => {
+        closeModal();
+        window.open(l.url, "_blank", "noopener,noreferrer");
+      });
+      modalButtons.appendChild(btn);
+    });
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+
+    const firstBtn = modalButtons.querySelector("button");
+    if (firstBtn) firstBtn.focus();
+
+    document.addEventListener("keydown", onKeyDown);
+  }
+
+  function closeModal(){
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    if (modalButtons) modalButtons.innerHTML = "";
+    document.removeEventListener("keydown", onKeyDown);
+    if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+    lastFocused = null;
+  }
+
+  function onKeyDown(e){
+    if (e.key === "Escape") closeModal();
+  }
+
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      const t = e.target;
+      if (t && t.dataset && t.dataset.close === "1") closeModal();
+    });
+  }
+
+  if (!grid) return;
+
   function makeCard(mod){
     const a = document.createElement("a");
     a.className = "card";
     a.role = "listitem";
-    a.href = mod.link || "#";
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.setAttribute("aria-label", `${safeText(mod.modName)} — opens link in a new tab`);
+    a.href = "#";
+    a.setAttribute("aria-label", `${safeText(mod.modName)} — choose where to open`);
 
     const img = document.createElement("img");
     img.className = "thumb";
@@ -42,7 +121,7 @@
     badge.innerHTML = `
       <span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3z"/><path d="M5 5h6v2H7v10h10v-4h2v6H5V5z"/></svg>
-        Open link
+        Choose link
       </span>
     `;
 
@@ -52,6 +131,11 @@
 
     a.appendChild(img);
     a.appendChild(body);
+
+    a.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      openModalFor(mod);
+    });
 
     return a;
   }

@@ -1,68 +1,34 @@
 // Edit this list to update your mods.
+// Each mod supports MULTIPLE purchase links. When a user clicks a card,
+// they will be asked which link to open (Amazon / eBay / AliExpress, etc.).
+//
 // - image: path to your image in /assets
 // - videoTitle: the title of your mod video (short)
 // - modName: the name of the mod/product
-// - link: where the card should open (Amazon, eBay, etc.)
+// - links: array of { label, url } entries
+//
+// Tip: If you only provide 1 link, it will open directly (no prompt).
 
 window.MODS = [
   {
     image: "assets/placeholder.svg",
     videoTitle: "Cold start after install",
-    modName: "K&N Intake hahhaahahaahah(example)",
-    link: "https://example.com"
+    modName: "K&N Intake (example)",
+    links: [
+      { label: "Amazon", url: "https://example.com" },
+      { label: "eBay", url: "https://example.com" },
+      { label: "AliExpress", url: "https://example.com" }
+    ]
   },
   {
     image: "assets/placeholder.svg",
     videoTitle: "Night drive upgrade",
     modName: "LED Headlights (example)",
-    link: "https://example.com"
+    links: [
+      { label: "Amazon", url: "https://example.com" },
+      { label: "eBay", url: "https://example.com" }
+    ]
   },
-  {
-    image: "assets/placeholder.svg",
-    videoTitle: "Interior glow install",
-    modName: "Ambient Lighting Kit (example)",
-    link: "https://example.com"
-  },
-  {
-    image: "assets/placeholder.svg",
-    videoTitle: "Cleaner look",
-    modName: "Chrome Delete (example)",
-    link: "https://example.com"
-  },
-  {
-    image: "assets/placeholder.svg",
-    videoTitle: "Sound + feel",
-    modName: "Exhaust Mod (example)",
-    link: "https://example.com"
-  },
-  {
-    image: "assets/placeholder.svg",
-    videoTitle: "Daily quality of life",
-    modName: "CarPlay Screen (example)",
-    link: "https://example.com"
-  },
-  {
-    image: "assets/placeholder.svg",
-    videoTitle: "Front end refresh",
-    modName: "Fog Light Upgrade (example)",
-    link: "https://example.com"
-  },
-  {
-    image: "assets/placeholder.svg",
-    videoTitle: "Cabin vibe",
-    modName: "Seat Covers (example)",
-    link: "https://example.com"
-  },
-  {
-    image: "assets/placeholder.svg",
-    videoTitle: "Safety add-on",
-    modName: "Dash Cam (example)",
-    link: "https://example.com"
-  },
-  {
-    image: "assets/placeholder.svg",
-    videoTitle: "Wheels setup",
-    modName: "Rims/Tires (example)",
-    link: "https://example.com"
-  }
+
+  // Add the rest of your mods here...
 ];
