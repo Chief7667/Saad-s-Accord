@@ -8,7 +8,7 @@ window.MODS = [
   {
     image: "assets/placeholder.svg",
     videoTitle: "Cold start after install",
-    modName: "K&N Intake (example)",
+    modName: "K&N Intake hahhaahahaahah(example)",
     link: "https://example.com"
   },
   {
